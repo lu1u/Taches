@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="auto"
+    android:padding="2dp">
+
+    <TextView
+        android:id="@+id/tvBack"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0.75"
+        android:background="@drawable/priorite_normale"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvPriorite"
+        android:layout_width="64dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:padding="2dp"
+        android:text="Très basse"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/tvBack"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvBack" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/marge_tache_back"
+        android:layout_marginTop="@dimen/marge_tache_back"
+        android:layout_marginEnd="@dimen/marge_tache_back"
+        android:layout_marginBottom="@dimen/marge_tache_back"
+        android:background="#2000"
+        app:layout_constraintBottom_toBottomOf="@+id/tvPriorite"
+        app:layout_constraintEnd_toEndOf="@+id/tvBack"
+        app:layout_constraintStart_toEndOf="@+id/tvPriorite"
+        app:layout_constraintTop_toTopOf="@+id/tvPriorite">
+
+        <TextView
+            android:id="@+id/tvNom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:text="TextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.lpi.taches.customviews.CustomJaugeView
+            android:id="@+id/cjJauge"
+            android:layout_width="0dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="4dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            app:CJVDrawableFond="@drawable/fond_jauge"
+            app:CJVDrawableJauge="@drawable/jauge"
+            app:CJVPaddingJauge="2dp"
+            app:CJVValeur="99"
+            app:CVJCouleurTexte="@color/icons"
+            app:CVJTailleTexte="35"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tvNom"
+            app:layout_constraintTop_toBottomOf="@+id/tvNom" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

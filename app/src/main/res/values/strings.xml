@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Tâches</string>
+    <string name="action_settings">Paramètres</string>
+
+
+    <string name="title_activity_edit_tache">EditTache</string>
+    <string name="tache_sans_nom">Sans nom %1$d</string>
+    <string name="modifier">Modifier…</string>
+    <string name="supprimer">Supprimer</string>
+    <string name="supprimer_tache">Voulez-vous supprimer la tâche %1$s?</string>
+    <string name="app_widget_description">Widget pour présenter les tâches</string>
+    <string name="widget_sort_priorite">Tri par priorité</string>
+    <string name="widget_sort_creation">Tri par date de création</string>
+    <string name="widget_sort_achevement">Tri par poucentage d\'achèvement</string>
+    <string name="widget_sort_nom">Tri par nom</string>
+    <string name="widget_vue_incompletes">Incomplètes</string>
+    <string name="widget_vue_completes">Complètes</string>
+    <string name="widget_vue_toutes">Toutes</string>
+    <string name="ui_a_propos_icones">Source des icônes https://materialdesignicons.com/</string>
+    <string name="ui_a_propos_code">Quelques morceaux de code: https://stackoverflow.com/</string>
+</resources>

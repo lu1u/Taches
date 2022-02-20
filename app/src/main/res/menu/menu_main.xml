@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.lpi.taches.MainActivity">
+    <item
+        android:id="@+id/action_tri"
+        android:icon="@drawable/sort"
+        android:title="Tri"
+        android:visible="true"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_vue"
+        android:icon="@drawable/eye"
+        android:title="Vue"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_apropos"
+        android:icon="@drawable/about"
+        android:orderInCategory="100"
+        android:title="A propos..."
+        app:showAsAction="ifRoom" />
+</menu>

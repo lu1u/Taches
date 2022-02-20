@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="priorites">
+        <item>Très basse</item>
+        <item>Basse</item>
+        <item>Normale</item>
+        <item>Haute</item>
+        <item>Très haute</item>
+    </string-array>
+
+    <array name="priorites_drawables">
+        <item>@drawable/priorite_tresbasse</item>
+        <item>@drawable/priorite_basse</item>
+        <item>@drawable/priorite_normale</item>
+        <item>@drawable/priorite_haute</item>
+        <item>@drawable/priorite_treshaute</item>
+    </array>
+
+    <array name="priorites_couleurs">
+        <item>@color/priorite_tresbasse</item>
+        <item>@color/priorite_basse</item>
+        <item>@color/priorite_normale</item>
+        <item>@color/priorite_haute</item>
+        <item>@color/priorite_treshaute</item>
+    </array>
+</resources>

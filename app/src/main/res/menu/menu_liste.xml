@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group >
+        <item
+            android:id="@+id/action_modifier"
+            android:checkable="false"
+            android:title="@string/modifier" />
+        <item
+            android:id="@+id/action_supprimer"
+            android:title="@string/supprimer" />
+    </group>
+</menu>

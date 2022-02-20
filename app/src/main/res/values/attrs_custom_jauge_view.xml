@@ -1,0 +1,12 @@
+<resources>
+    <declare-styleable name="CustomJaugeView">
+        <attr name="CJVValeur" format="integer" />
+        <attr name="CJVMinimum" format="integer" />
+        <attr name="CJVMaximum" format="integer" />
+        <attr name="CVJCouleurTexte" format="color" />
+        <attr name="CVJTailleTexte" format="float" />
+        <attr name="CJVDrawableFond" format="color|reference" />
+        <attr name="CJVDrawableJauge" format="color|reference" />
+        <attr name="CJVPaddingJauge" format="dimension" />
+    </declare-styleable>
+</resources>
