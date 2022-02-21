@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
-  <solid android:color="#4FFF" />
+  <solid android:color="@color/fond_jauge" />
   <corners
       android:bottomLeftRadius="@dimen/corner_jauge"
       android:bottomRightRadius="@dimen/corner_jauge"

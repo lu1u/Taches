@@ -145,6 +145,15 @@ public class CustomJaugeView extends View
 		canvas.drawText(text, left + x, top + y, paint);
 		}
 
+	/***
+	 * Dessiner un drawable
+	 * @param canvas
+	 * @param left
+	 * @param top
+	 * @param right
+	 * @param bottom
+	 * @param drawable
+	 */
 	private void drawDrawable(@NonNull final Canvas canvas, int left, int top, int right, int bottom, @Nullable final Drawable drawable)
 		{
 		if ( drawable == null)

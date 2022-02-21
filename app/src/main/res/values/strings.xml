@@ -18,4 +18,5 @@
     <string name="widget_vue_toutes">Toutes</string>
     <string name="ui_a_propos_icones">Source des icônes https://materialdesignicons.com/</string>
     <string name="ui_a_propos_code">Quelques morceaux de code: https://stackoverflow.com/</string>
+    <string name="supprimer_titre">Supprimer</string>
 </resources>

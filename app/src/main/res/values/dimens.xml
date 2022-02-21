@@ -9,6 +9,6 @@
     <dimen name="corner_topleft">32dp</dimen>
     <dimen name="corner_topright">0dp</dimen>
     <dimen name="marge_tache_back">4dp</dimen>
-    <dimen name="corner_jauge">6dp</dimen>
+    <dimen name="corner_jauge">8dp</dimen>
 
 </resources>

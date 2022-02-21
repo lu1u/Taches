@@ -34,7 +34,7 @@
         android:singleLine="false" />
 
     <TextView
-        android:text="Copyright (c) Lucien Pilloni 2019"
+        android:text="Copyright (c) Lucien Pilloni 2022"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

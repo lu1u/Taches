@@ -14,7 +14,6 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.HandlerThread;
-import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
@@ -31,11 +30,10 @@ import com.lpi.taches.taches.Preferences;
  */
 public class TachesWidget extends AppWidgetProvider
 	{
-	public static final String TAG = "TachesWidget";
-	private static final String REFRESH_VUE = "com.example.taches.widget.VUE";
-	private static final String REFRESH_SORT = "com.example.taches.widget.SORT";
-	private static final String REFRESH_APPLICATION = "com.example.taches.widget.APPLICATION";
-	public static final String EXTRA_WIDGETID = "com.example.taches.widget.id"; //$NON-NLS-1$
+	private static final String ACTION_VUE = "com.example.taches.widget.VUE";
+	private static final String ACTION_SORT = "com.example.taches.widget.SORT";
+	private static final String ACTION_APPLICATION = "com.example.taches.widget.APPLICATION";
+	public static final String EXTRA_WIDGETID = "com.example.taches.widget.id";
 
 	TachesWidgetDataProviderObserver sDataObserver;
 	private static Handler sWorkerQueue;
@@ -44,15 +42,19 @@ public class TachesWidget extends AppWidgetProvider
 	/***
 	 * Forcer la mise a jour des widgets
 	 * @param context
-	 * @param application
 	 */
-	public static void updateWidgets(@NonNull final Context context, @NonNull final Application application)
+	public static void updateAllWidgets(@NonNull final Context context)
 		{
-		Intent intent = new Intent(context, TachesWidgetContentProvider.class);
-		intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-		int[] ids = AppWidgetManager.getInstance(application).getAppWidgetIds(new ComponentName(application, TachesWidgetContentProvider.class));
-		TachesWidget myWidget = new TachesWidget();
-		myWidget.onUpdate(context, AppWidgetManager.getInstance(context), ids);
+		// Forcer la mise a jour du DataProvider
+		final Uri uri = ContentUris.withAppendedId(TachesWidgetContentProvider.CONTENT_URI, 0);
+		ContentValues values = new ContentValues();
+		final ContentResolver r = context.getContentResolver();
+		r.update(uri, values, null, null);
+
+		// Avertir les widgets
+		final AppWidgetManager mgr = AppWidgetManager.getInstance(context);
+		ComponentName cn = new ComponentName(context, TachesWidget.class);
+		mgr.notifyAppWidgetViewDataChanged(mgr.getAppWidgetIds(cn), R.id.lvTaches);
 		}
 
 	/***
@@ -108,7 +110,7 @@ public class TachesWidget extends AppWidgetProvider
 		// Bouton Vue
 		{
 		final Intent refreshIntent = new Intent(context, TachesWidget.class);
-		refreshIntent.setAction(TachesWidget.REFRESH_VUE);
+		refreshIntent.setAction(TachesWidget.ACTION_VUE);
 		refreshIntent.putExtra(EXTRA_WIDGETID, appWidgetId);
 		final PendingIntent refreshPendingIntent = PendingIntent.getBroadcast(context, 0, refreshIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 		rv.setOnClickPendingIntent(R.id.ibWidgetVue, refreshPendingIntent);
@@ -117,7 +119,7 @@ public class TachesWidget extends AppWidgetProvider
 		// Bouton Sort
 		{
 		final Intent refreshIntent = new Intent(context, TachesWidget.class);
-		refreshIntent.setAction(TachesWidget.REFRESH_SORT);
+		refreshIntent.setAction(TachesWidget.ACTION_SORT);
 		refreshIntent.putExtra(EXTRA_WIDGETID, appWidgetId);
 		final PendingIntent refreshPendingIntent = PendingIntent.getBroadcast(context, 0, refreshIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 		rv.setOnClickPendingIntent(R.id.ibWidgetSort, refreshPendingIntent);
@@ -126,7 +128,7 @@ public class TachesWidget extends AppWidgetProvider
 		// Bouton Application
 		{
 		final Intent refreshIntent = new Intent(context, TachesWidget.class);
-		refreshIntent.setAction(TachesWidget.REFRESH_APPLICATION);
+		refreshIntent.setAction(TachesWidget.ACTION_APPLICATION);
 		refreshIntent.putExtra(EXTRA_WIDGETID, appWidgetId);
 		final PendingIntent refreshPendingIntent = PendingIntent.getBroadcast(context, 0, refreshIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 		rv.setOnClickPendingIntent(R.id.ibWidgetApplication, refreshPendingIntent);
@@ -199,11 +201,8 @@ public class TachesWidget extends AppWidgetProvider
 				}
 			message = "Erreur " + e.getLocalizedMessage() + "\n" + stack;
 			}
-		Log.e(TAG, message);
-
 		Toast t = Toast.makeText(context, "Erreur\n" + message + "\n", Toast.LENGTH_LONG);
 		t.show();
-
 		}
 
 	@Override
@@ -211,29 +210,28 @@ public class TachesWidget extends AppWidgetProvider
 		{
 		final String action = intent.getAction();
 		final int widgetId = intent.getIntExtra(EXTRA_WIDGETID, -1);
-		Log.d(TAG, "OnReceive " + action + ", widgetid: " + widgetId);
 		try
 			{
 			switch (action)
 				{
-				case REFRESH_VUE:
+				case ACTION_VUE:
 					handleRefreshVue(context, intent, widgetId);
 					break;
-				case REFRESH_SORT:
+				case ACTION_SORT:
 					handleRefreshSort(context, intent, widgetId);
 					break;
-				case REFRESH_APPLICATION:
+				case ACTION_APPLICATION:
 					handleApplication(context, intent, widgetId);
-					break;
 				}
 			super.onReceive(context, intent);
-			} catch (Exception e)
+			}
+		catch (Exception e)
 			{
 			Erreur(context, e);
-
 			e.printStackTrace();
 			}
 		}
+
 
 	private void handleApplication(@NonNull final Context context, @NonNull final Intent i, int widgetId)
 		{
@@ -271,8 +269,7 @@ public class TachesWidget extends AppWidgetProvider
 		preferences.putInt(Preferences.PREF_WIDGET_SORT, optionSort);
 
 		Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
-		// Raffraichir
-		handleRefresh(context, intent, widgetId);
+		updateAllWidgets(context);
 		}
 
 	private void handleRefreshVue(@NonNull final Context context, @NonNull final Intent intent, int widgetId)
@@ -298,11 +295,15 @@ public class TachesWidget extends AppWidgetProvider
 
 		preferences.putInt(Preferences.PREF_WIDGET_VUE, option);
 		Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
-		// Raffraichir
-		handleRefresh(context, intent, widgetId);
+
+		updateAllWidgets(context);
 		}
 
-	private void handleRefresh(@NonNull final Context context, @NonNull final Intent intent, int widgetId)
+	/***
+	 * Forcer la mise a jour des Widget
+	 * @param context
+	 */
+	private void handleRefresh(@NonNull final Context context)
 		{
 		final ContentResolver r = context.getContentResolver();
 		// Forcer la mise a jour du DataProvider

@@ -24,11 +24,11 @@ import com.lpi.taches.taches.OptionTri;
 import com.lpi.taches.taches.OptionVue;
 import com.lpi.taches.taches.Preferences;
 import com.lpi.taches.taches.Tache;
+import com.lpi.taches.utils.MessageBoxUtils;
 import com.lpi.taches.widget.TachesWidget;
 
 public class MainActivity extends AppCompatActivity
 	{
-
 	private RecyclerView _rvTaches;
 	private TacheRecyclerViewAdapter _adapter;
 	private int _currentItemSelected = -1;
@@ -44,20 +44,7 @@ public class MainActivity extends AppCompatActivity
 		Toolbar toolbar = findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
 		FloatingActionButton fab = findViewById(R.id.fab);
-		fab.setOnClickListener(new View.OnClickListener()
-			{
-			@Override
-			public void onClick(View view)
-				{
-				EditTacheActivity.startForEdit(MainActivity.this, null, new EditTacheActivity.Listener()
-					{
-					@Override public void onOk()
-						{
-						setTachesAdapter();
-						}
-					});
-				}
-			});
+		fab.setOnClickListener(view -> EditTacheActivity.startForEdit(MainActivity.this, null, () -> setTachesAdapter()));
 
 		_preferences = Preferences.getInstance(this);
 		_optionTri = _preferences.getInt(Preferences.PREF_SORT, OptionTri.OPTION_TRI_NOM);
@@ -72,59 +59,67 @@ public class MainActivity extends AppCompatActivity
 		}
 
 
+	/***
+	 * Initialisation de l'Activity
+	 */
 	private void initActivity()
 		{
 		_rvTaches = findViewById(R.id.rvListeTaches);
 		_rvTaches.setLayoutManager(new LinearLayoutManager(this));
 		registerForContextMenu(_rvTaches);
 
-		_rvTaches.setOnClickListener(new View.OnClickListener()
+		_rvTaches.setOnClickListener(view ->
 			                             {
-			                             @Override public void onClick(@NonNull View view)
-				                             {
-				                             view.setSelected(true);
-				                             _currentItemSelected = _rvTaches.getChildAdapterPosition(_rvTaches.getFocusedChild());
-				                             MainActivity.this.openContextMenu(view);
-				                             }
+			                             view.setSelected(true);
+			                             _currentItemSelected = _rvTaches.getChildAdapterPosition(_rvTaches.getFocusedChild());
+			                             MainActivity.this.openContextMenu(view);
 			                             }
 		                            );
-
 
 		setTachesAdapter();
 		}
 
+	/***
+	 * Configurer l'adapteur de taches de la RecyclerView (a faire après chaque modification dans la table des Taches),
+	 * avertir les Widgets du changement
+	 */
 	private void setTachesAdapter()
 		{
 		Cursor cursor = TachesDatabase.getInstance(this).getCursor(_optionTri, _optionVue);
 		if (cursor != null)
 			{
-			_adapter = new TacheRecyclerViewAdapter(this, cursor, new TacheRecyclerViewAdapter.ItemClicListener()
-				{
-				@Override public void onClic(int position)
-					{
-					onEdit(position);
-					}
-				});
+			_adapter = new TacheRecyclerViewAdapter(this, cursor, position -> onEdit(position));
 			_rvTaches.setAdapter(_adapter);
 			}
-		TachesWidget.updateWidgets(this, getApplication());
+		TachesWidget.updateAllWidgets(this);
 		}
 
+	/***
+	 * Appeler la fenetre d'édition d'une tache
+	 * @param position de la tache dans la liste
+	 */
 	private void onEdit(int position)
 		{
 		EditTacheActivity.startForEdit(this, _adapter.get(position), () -> setTachesAdapter());
 		}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu)
+	/***
+	 * Creer le menu de l'activity
+	 * @param menu
+	 * @return
+	 */
+	@Override public boolean onCreateOptionsMenu(Menu menu)
 		{
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.menu_main, menu);
 		return true;
 		}
 
-	@Override
-	public boolean onOptionsItemSelected(@NonNull MenuItem item)
+	/***
+	 * Option de menu selectionnee
+	 * @param item
+	 * @return
+	 */
+	@Override public boolean onOptionsItemSelected(@NonNull MenuItem item)
 		{
 		int id = item.getItemId();
 
@@ -156,6 +151,7 @@ public class MainActivity extends AppCompatActivity
 	public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, ContextMenu.ContextMenuInfo menuInfo)
 		{
 		super.onCreateContextMenu(menu, v, menuInfo);
+
 		if (v.getId() == R.id.rvListeTaches)
 			{
 			if (_currentItemSelected != -1)
@@ -201,32 +197,27 @@ public class MainActivity extends AppCompatActivity
 		final Tache objetASupprimer = _adapter.get(_currentItemSelected);
 		if (objetASupprimer != null)
 			{
-			final TachesDatabase database = TachesDatabase.getInstance(MainActivity.this);
-			AlertDialog dialog = new AlertDialog.Builder(this).create();
-			dialog.setTitle("Supprimer");
-			dialog.setMessage(getResources().getString(R.string.supprimer_tache, objetASupprimer._nom));
-			dialog.setCancelable(false);
-			dialog.setButton(DialogInterface.BUTTON_POSITIVE, getResources().getString(android.R.string.ok),
-			                 new DialogInterface.OnClickListener()
-				                 {
-				                 public void onClick(DialogInterface dialog, int buttonId)
-					                 {
-					                 // Supprimer
-					                 if (database.supprime(objetASupprimer._id))
-						                 messageNotification(_rvTaches, "Tâche " + objetASupprimer._nom + " supprimée");
-					                 else
-						                 messageNotification(_rvTaches, "Erreur lors de la suppression de  " + objetASupprimer._nom + ", tache non supprimée");
-					                 setTachesAdapter();
-					                 _currentItemSelected = -1;
-					                 }
-				                 });
-			dialog.setButton(DialogInterface.BUTTON_NEGATIVE, getResources().getString(android.R.string.cancel),
-			                 (dialog1, buttonId) ->
-				                 {
-				                 // Ne rien faire
-				                 });
-			dialog.setIcon(android.R.drawable.ic_dialog_alert);
-			dialog.show();
+			MessageBoxUtils.messageBox(this, getResources().getString(R.string.supprimer_titre), getResources().getString(R.string.supprimer_tache, objetASupprimer._nom),
+			                           MessageBoxUtils.BOUTON_OK | MessageBoxUtils.BOUTON_CANCEL,
+			                           new MessageBoxUtils.Listener()
+				                           {
+				                           @Override public void onOk()
+					                           {
+					                           // Supprimer
+					                           final TachesDatabase database = TachesDatabase.getInstance(MainActivity.this);
+
+					                           if (database.supprime(objetASupprimer._id))
+						                           messageNotification(_rvTaches, "Tâche " + objetASupprimer._nom + " supprimée");
+					                           else
+						                           messageNotification(_rvTaches, "Erreur lors de la suppression de  " + objetASupprimer._nom + ", tache non supprimée");
+					                           setTachesAdapter();
+					                           _currentItemSelected = -1;
+					                           }
+
+				                           @Override public void onCancel()
+					                           {
+					                           }
+				                           });
 			}
 		}
 

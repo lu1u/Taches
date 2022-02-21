@@ -4,12 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/lucien/Developpement/Android/Taches2/app/src/main/res/drawable/about.xml" value="0.317" />
+        <entry key="..\:/lucien/Developpement/Android/Taches2/app/src/main/res/drawable/fond_jauge.xml" value="0.216" />
         <entry key="..\:/lucien/Developpement/Android/Taches2/app/src/main/res/drawable/jauge.xml" value="0.1" />
         <entry key="..\:/lucien/Developpement/Android/Taches2/app/src/main/res/layout/activity_apropos.xml" value="0.15" />
         <entry key="..\:/lucien/Developpement/Android/Taches2/app/src/main/res/layout/activity_edit_tache.xml" value="0.5" />
         <entry key="..\:/lucien/Developpement/Android/Taches2/app/src/main/res/layout/activity_main.xml" value="0.20104166666666667" />
         <entry key="..\:/lucien/Developpement/Android/Taches2/app/src/main/res/layout/element_liste.xml" value="0.5" />
-        <entry key="..\:/lucien/Developpement/Android/Taches2/app/src/main/res/layout/taches_widget_element_liste.xml" value="0.1" />
+        <entry key="..\:/lucien/Developpement/Android/Taches2/app/src/main/res/layout/taches_widget.xml" value="0.3140625" />
+        <entry key="..\:/lucien/Developpement/Android/Taches2/app/src/main/res/layout/taches_widget_element_liste.xml" value="0.22" />
         <entry key="..\:/lucien/Developpement/Android/Taches2/app/src/main/res/menu/menu_main.xml" value="0.18" />
       </map>
     </option>
