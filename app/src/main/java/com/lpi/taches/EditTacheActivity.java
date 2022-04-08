@@ -126,7 +126,7 @@ public class EditTacheActivity extends AppCompatActivity
 		if ( tache == null)
 			{
 			tache = new Tache();
-			tache._nom = context.getResources().getString(R.string.tache_sans_nom, TachesDatabase.getInstance(context).nbTaches()+1);
+			tache._nom = TachesDatabase.getInstance(context).getNomUnique(context, R.string.tache_sans_nom);
 			}
 
 		etNom.setText(tache._nom);

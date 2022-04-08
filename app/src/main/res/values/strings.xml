@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Tâches</string>
-    <string name="action_settings">Paramètres</string>
 
 
     <string name="title_activity_edit_tache">EditTache</string>

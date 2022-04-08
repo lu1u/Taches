@@ -39,7 +39,7 @@
             android:layout_marginEnd="8dp"
             android:autofillHints=""
             android:ems="10"
-            android:inputType="none"
+            android:inputType="textAutoCorrect|text|textCapSentences|textAutoComplete"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView4"
             app:layout_constraintTop_toTopOf="@+id/textView4" />
@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:gravity="top"
-            android:inputType="none"
+            android:inputType="textAutoCorrect|textMultiLine|text|textCapSentences|textAutoComplete"
             android:minLines="2"
             app:layout_constraintEnd_toEndOf="@+id/etNom"
             app:layout_constraintStart_toStartOf="@+id/etNom"

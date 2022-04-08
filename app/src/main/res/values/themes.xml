@@ -23,19 +23,4 @@
 
     <style name="Theme.Taches.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="Theme.Taches.AppWidgetContainerParent" parent="@android:style/Theme.DeviceDefault">
-        <!-- Radius of the outer bound of widgets to make the rounded corners -->
-        <item name="appWidgetRadius">16dp</item>
-        <!--
-        Radius of the inner view's bound of widgets to make the rounded corners.
-        It needs to be 8dp or less than the value of appWidgetRadius
-        -->
-        <item name="appWidgetInnerRadius">8dp</item>
-    </style>
-
-    <style name="Theme.Taches.AppWidgetContainer" parent="Theme.Taches.AppWidgetContainerParent">
-        <!-- Apply padding to avoid the content of the widget colliding with the rounded corners -->
-        <item name="appWidgetPadding">8dp</item>
-        <item name="android:background">#2000</item>
-    </style>
 </resources>

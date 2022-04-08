@@ -19,7 +19,7 @@ public class TachesWidgetViewsFactory implements RemoteViewsService.RemoteViewsF
 	private final TachesDatabase _bdd;
 	protected final Context mContext;
 	protected Cursor _cursor;
-	protected final int mAppWidgetId;
+	protected final int _widgetId;
 	private final Preferences _preferences;
 
 	public TachesWidgetViewsFactory(Context context, Intent intent)
@@ -27,7 +27,7 @@ public class TachesWidgetViewsFactory implements RemoteViewsService.RemoteViewsF
 		_bdd = TachesDatabase.getInstance(context);
 		mContext = context;
 		_preferences = Preferences.getInstance(context);
-		mAppWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
+		_widgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
 		}
 	@Override public void onCreate()
 		{
@@ -39,7 +39,7 @@ public class TachesWidgetViewsFactory implements RemoteViewsService.RemoteViewsF
 		if (_cursor != null)
 			_cursor.close();
 
-		_cursor = _bdd.getCursor(_preferences.getInt(Preferences.PREF_WIDGET_SORT, OptionTri.OPTION_TRI_NOM), _preferences.getInt(Preferences.PREF_WIDGET_VUE, OptionVue.OPTION_VUE_TOUTES));
+		_cursor = _bdd.getCursor(_preferences.getInt(Preferences.PREF_WIDGET_SORT+ _widgetId, OptionTri.OPTION_TRI_NOM), _preferences.getInt(Preferences.PREF_WIDGET_VUE+ _widgetId, OptionVue.OPTION_VUE_TOUTES));
 		}
 
 	@Override public void onDestroy()
@@ -69,7 +69,6 @@ public class TachesWidgetViewsFactory implements RemoteViewsService.RemoteViewsF
 		rv.setTextColor(R.id.tvWidgetNom, couleur);
 		rv.setTextViewText(R.id.tvWidgetPourcent, tache._achevement + "%");
 		rv.setTextColor(R.id.tvWidgetPourcent, couleur);
-
 		return rv;
 		}
 

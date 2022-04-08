@@ -1,6 +1,7 @@
 package com.lpi.taches;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,6 +37,8 @@ public class MainActivity extends AppCompatActivity
 	private int _optionTri = OptionTri.OPTION_TRI_NOM;
 	private Preferences _preferences;
 	private int _optionVue = OptionVue.OPTION_VUE_TOUTES;
+	private static Context _context;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -43,6 +47,7 @@ public class MainActivity extends AppCompatActivity
 		setContentView(R.layout.activity_main);
 		Toolbar toolbar = findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
+		_context = this;
 		FloatingActionButton fab = findViewById(R.id.fab);
 		fab.setOnClickListener(view -> EditTacheActivity.startForEdit(MainActivity.this, null, () -> setTachesAdapter()));
 
@@ -53,9 +58,9 @@ public class MainActivity extends AppCompatActivity
 		}
 
 
-	static public void SignaleErreur(String message, @NonNull Exception e)
+	static public void SignaleErreur(@NonNull final String message, @NonNull Exception e)
 		{
-
+			Toast.makeText(_context, message + "\n" + e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
 		}
 
 
@@ -64,19 +69,25 @@ public class MainActivity extends AppCompatActivity
 	 */
 	private void initActivity()
 		{
-		_rvTaches = findViewById(R.id.rvListeTaches);
-		_rvTaches.setLayoutManager(new LinearLayoutManager(this));
-		registerForContextMenu(_rvTaches);
+			try
+			{
+				_rvTaches = findViewById(R.id.rvListeTaches);
+				_rvTaches.setLayoutManager(new LinearLayoutManager(this));
+				registerForContextMenu(_rvTaches);
 
-		_rvTaches.setOnClickListener(view ->
-			                             {
-			                             view.setSelected(true);
-			                             _currentItemSelected = _rvTaches.getChildAdapterPosition(_rvTaches.getFocusedChild());
-			                             MainActivity.this.openContextMenu(view);
-			                             }
-		                            );
+				_rvTaches.setOnClickListener(view ->
+												 {
+												 view.setSelected(true);
+												 _currentItemSelected = _rvTaches.getChildAdapterPosition(_rvTaches.getFocusedChild());
+												 MainActivity.this.openContextMenu(view);
+												 }
+											);
 
-		setTachesAdapter();
+				setTachesAdapter();
+			} catch (Exception e)
+			{
+				SignaleErreur("Erreur dans initActivity", e);
+			}
 		}
 
 	/***

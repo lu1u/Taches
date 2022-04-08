@@ -1,6 +1,5 @@
 package com.lpi.taches.widget;
 
-import android.app.Application;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
@@ -17,7 +16,6 @@ import android.os.HandlerThread;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 
 import com.lpi.taches.R;
@@ -43,7 +41,7 @@ public class TachesWidget extends AppWidgetProvider
 	 * Forcer la mise a jour des widgets
 	 * @param context
 	 */
-	public static void updateAllWidgets(@NonNull final Context context)
+	public static void updateAllWidgets(final Context context)
 		{
 		// Forcer la mise a jour du DataProvider
 		final Uri uri = ContentUris.withAppendedId(TachesWidgetContentProvider.CONTENT_URI, 0);
@@ -233,7 +231,7 @@ public class TachesWidget extends AppWidgetProvider
 		}
 
 
-	private void handleApplication(@NonNull final Context context, @NonNull final Intent i, int widgetId)
+	private void handleApplication(final Context context, final Intent i, int widgetId)
 		{
 		PackageManager manager = context.getPackageManager();
 		Intent intent = manager.getLaunchIntentForPackage(context.getPackageName());
@@ -242,10 +240,10 @@ public class TachesWidget extends AppWidgetProvider
 		}
 
 
-	private void handleRefreshSort(@NonNull final Context context, @NonNull final Intent intent, int widgetId)
+	private void handleRefreshSort(final Context context, final Intent intent, int widgetId)
 		{
 		Preferences preferences = Preferences.getInstance(context);
-		int optionSort = preferences.getInt(Preferences.PREF_WIDGET_SORT, OptionTri.OPTION_TRI_NOM);
+		int optionSort = preferences.getInt(Preferences.PREF_WIDGET_SORT + widgetId, OptionTri.OPTION_TRI_NOM);
 		@StringRes int message;
 		switch (optionSort)
 			{
@@ -266,16 +264,16 @@ public class TachesWidget extends AppWidgetProvider
 				message = R.string.widget_sort_nom;
 			}
 
-		preferences.putInt(Preferences.PREF_WIDGET_SORT, optionSort);
+		preferences.putInt(Preferences.PREF_WIDGET_SORT + widgetId, optionSort);
 
 		Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
 		updateAllWidgets(context);
 		}
 
-	private void handleRefreshVue(@NonNull final Context context, @NonNull final Intent intent, int widgetId)
+	private void handleRefreshVue(final Context context, final Intent intent, int widgetId)
 		{
 		Preferences preferences = Preferences.getInstance(context);
-		int option = preferences.getInt(Preferences.PREF_WIDGET_VUE, OptionVue.OPTION_VUE_TOUTES);
+		int option = preferences.getInt(Preferences.PREF_WIDGET_VUE + widgetId, OptionVue.OPTION_VUE_TOUTES);
 		@StringRes int message;
 
 		switch (option)
@@ -293,7 +291,7 @@ public class TachesWidget extends AppWidgetProvider
 				message = R.string.widget_vue_toutes;
 			}
 
-		preferences.putInt(Preferences.PREF_WIDGET_VUE, option);
+		preferences.putInt(Preferences.PREF_WIDGET_VUE + widgetId, option);
 		Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
 
 		updateAllWidgets(context);
@@ -303,7 +301,7 @@ public class TachesWidget extends AppWidgetProvider
 	 * Forcer la mise a jour des Widget
 	 * @param context
 	 */
-	private void handleRefresh(@NonNull final Context context)
+	private void handleRefresh(final Context context)
 		{
 		final ContentResolver r = context.getContentResolver();
 		// Forcer la mise a jour du DataProvider

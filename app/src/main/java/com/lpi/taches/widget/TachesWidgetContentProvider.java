@@ -15,6 +15,17 @@ public class TachesWidgetContentProvider extends ContentProvider
 	@SuppressWarnings("nls")
 	public static final Uri CONTENT_URI = Uri.parse("content://com.lpi.taches.widget.TachesWidgetContentProvider");
 	protected TachesDatabase _database;
+	private int _widgetId = 0;
+
+	public TachesWidgetContentProvider()
+	{
+
+	}
+
+	public TachesWidgetContentProvider(int widgetId)
+		{
+		_widgetId = widgetId;
+		}
 	@Override
 	public boolean onCreate()
 		{
@@ -28,7 +39,7 @@ public class TachesWidgetContentProvider extends ContentProvider
 	public synchronized Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder)
 		{
 		Preferences preferences = Preferences.getInstance(getContext());
-		return _database.getCursor(preferences.getInt(Preferences.PREF_WIDGET_SORT, OptionTri.OPTION_TRI_NOM), preferences.getInt(Preferences.PREF_WIDGET_VUE, OptionVue.OPTION_VUE_TOUTES));
+		return _database.getCursor(preferences.getInt(Preferences.PREF_WIDGET_SORT+_widgetId, OptionTri.OPTION_TRI_NOM), preferences.getInt(Preferences.PREF_WIDGET_VUE+_widgetId, OptionVue.OPTION_VUE_TOUTES));
 		}
 
 	@Override
