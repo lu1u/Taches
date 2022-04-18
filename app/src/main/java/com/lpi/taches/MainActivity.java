@@ -101,6 +101,10 @@ public class MainActivity extends AppCompatActivity
 			{
 			_adapter = new TacheRecyclerViewAdapter(this, cursor, position -> onEdit(position));
 			_rvTaches.setAdapter(_adapter);
+
+			String message = getResources().getQuantityString(R.plurals.nombre_de_taches, cursor.getCount());
+			message = String.format(message, cursor.getCount());
+			Toast.makeText(this, message, Toast.LENGTH_LONG).show();
 			}
 		TachesWidget.updateAllWidgets(this);
 		}

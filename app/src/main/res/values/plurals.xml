@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="nombre_de_taches">
+        <item quantity="zero">No task</item>
+        <item quantity="one">One task</item>
+        <item quantity="two">Two tasks</item>
+        <item quantity="other">%d tasks</item>
+    </plurals>
+</resources>
