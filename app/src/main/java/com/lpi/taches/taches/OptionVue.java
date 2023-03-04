@@ -11,7 +11,9 @@ import androidx.annotation.NonNull;
 
 import com.lpi.taches.R;
 
-
+/***
+ * Classe pour gérer les options de vues de taches dans la fenetre principale
+ */
 public class OptionVue
 	{
 	public static final int OPTION_VUE_TOUTES = 0;

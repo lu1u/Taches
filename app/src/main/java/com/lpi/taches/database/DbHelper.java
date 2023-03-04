@@ -13,8 +13,8 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 public class DbHelper extends SQLiteOpenHelper
-	{
-	public static final int DATABASE_VERSION = 3;
+{
+	public static final int DATABASE_VERSION = 4;
 	public static final @NonNull String DATABASE_NAME = "taches.db";
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Table des randonnees
@@ -25,8 +25,9 @@ public class DbHelper extends SQLiteOpenHelper
 	public static final @NonNull String COLONNE_TACHE_PRIORITE = "PRIORITE";
 	public static final @NonNull String COLONNE_TACHE_ACHEVEMENT = "ACHEVEMENT";
 	public static final @NonNull String COLONNE_TACHE_NOTE = "NOTE";
+	public static final @NonNull String COLONNE_TACHE_ALARME = "ALARME";
 	public static final @NonNull
-	String[] TABLE_TACHES_COLONNES = {COLONNE_TACHE_ID, COLONNE_TACHE_NOM, COLONNE_TACHE_CREATION, COLONNE_TACHE_PRIORITE, COLONNE_TACHE_ACHEVEMENT, COLONNE_TACHE_NOTE};
+	String[] TABLE_TACHES_COLONNES = {COLONNE_TACHE_ID, COLONNE_TACHE_NOM, COLONNE_TACHE_CREATION, COLONNE_TACHE_PRIORITE, COLONNE_TACHE_ACHEVEMENT, COLONNE_TACHE_NOTE, COLONNE_TACHE_ALARME};
 
 	// Table preferences bool et int
 	public static final @NonNull String TABLE_PREFERENCES_INT = "PREFERENCES_INT";
@@ -46,7 +47,8 @@ public class DbHelper extends SQLiteOpenHelper
 			+ COLONNE_TACHE_CREATION + " integer, "
 			+ COLONNE_TACHE_PRIORITE + " integer, "
 			+ COLONNE_TACHE_ACHEVEMENT + " integer, "
-			+ COLONNE_TACHE_NOTE + " text not null"
+			+ COLONNE_TACHE_NOTE + " text not null, "
+			+ COLONNE_TACHE_ALARME + " text"
 			+ ");";
 
 
@@ -62,43 +64,43 @@ public class DbHelper extends SQLiteOpenHelper
 			+ ");";
 
 	public DbHelper(Context context)
-		{
+	{
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
-		}
+	}
 
 	@Override
 	public void onCreate(@NonNull SQLiteDatabase database)
-		{
+	{
 		try
-			{
+		{
 			database.execSQL(DATABASE_TACHES_CREATE);
 			database.execSQL(DATABASE_PREF_INT_CREATE);
 			database.execSQL(DATABASE_PREF_STRING_CREATE);
-			} catch (SQLException e)
-			{
+		} catch (SQLException e)
+		{
 			e.printStackTrace();
-			}
 		}
+	}
 
 	@Override
 	public void onUpgrade(@NonNull SQLiteDatabase db, int oldVersion, int newVersion)
-		{
+	{
 		try
-			{
+		{
 			Log.w(DbHelper.class.getName(),
-			      "Upgrading database from version " + oldVersion + " to "
-					      + newVersion + ", which will destroy all old data");
-
-			db.execSQL("DROP TABLE IF EXISTS " + TABLE_TACHES);
-			db.execSQL("DROP TABLE IF EXISTS " + TABLE_PREFERENCES_INT);
-			db.execSQL("DROP TABLE IF EXISTS " + TABLE_PREFERENCES_STRING);
+					"Upgrading database from version " + oldVersion + " to "
+							+ newVersion + ", which will destroy all old data");
+			db.execSQL("ALTER TABLE " + TABLE_TACHES + " ADD COLUMN " + COLONNE_TACHE_ALARME + " TEXT DEFAULT NULL");
+			//db.execSQL("DROP TABLE IF EXISTS " + TABLE_TACHES);
+			//db.execSQL("DROP TABLE IF EXISTS " + TABLE_PREFERENCES_INT);
+			//db.execSQL("DROP TABLE IF EXISTS " + TABLE_PREFERENCES_STRING);
 
 			onCreate(db);
-			} catch (SQLException e)
-			{
+		} catch (SQLException e)
+		{
 			e.printStackTrace();
-			}
 		}
-
-
 	}
+
+
+}

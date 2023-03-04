@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/fond_fragment_alarme"
+    android:orientation="vertical"
+    android:padding="4dp"
+    tools:context=".EditAlarmeFragment">
+
+    <Switch
+        android:id="@+id/swActive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alarme" />
+
+    <LinearLayout
+        android:id="@+id/idLayoutBoutons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="8dp"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="0.5"
+                android:background="@drawable/fond_fragment_alarme"
+                android:padding="8dp"
+                android:text=""
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/tvHeure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_weight="0.5"
+                android:background="@drawable/fond_fragment_alarme"
+                android:padding="8dp"
+                android:text=""
+                android:textAlignment="center" />
+
+        </LinearLayout>
+
+        <DatePicker
+            android:id="@+id/pDate2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="-8dp"
+            android:layout_weight="0.5"
+            android:calendarViewShown="false"
+            android:datePickerMode="spinner"
+            android:visibility="gone" />
+
+        <TimePicker
+            android:id="@+id/pHeure2"
+            style="@android:style/Widget.Material.Light.TimePicker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:timePickerMode="spinner"
+            android:visibility="visible" />
+
+    </LinearLayout>
+
+</LinearLayout>

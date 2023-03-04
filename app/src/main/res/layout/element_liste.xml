@@ -1,35 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
 
+    android:layout_margin="2dp"
     android:background="?android:attr/selectableItemBackground"
     android:clickable="true"
-    android:focusable="auto"
-    android:padding="2dp">
+    android:focusable="auto">
 
     <TextView
         android:id="@+id/tvBack"
-        android:layout_width="64dp"
-        android:layout_height="@dimen/element_hauteur"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="@drawable/priorite_normale"
-        android:textSize="11sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvPriorite"
-        android:layout_width="64dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
+        android:layout_width="72dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/texte_priorite"
         android:clipToOutline="true"
         android:gravity="center_horizontal|center_vertical"
         android:padding="2dp"
-        android:singleLine="false"
+        android:singleLine="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/white"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/tvBack"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,21 +41,24 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:background="@color/couleur_fond_item"
-        app:layout_constraintBottom_toBottomOf="@+id/tvBack"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
+        android:background="#4fff"
+        android:padding="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvBack"
-        app:layout_constraintTop_toTopOf="@+id/tvBack">
+        app:layout_constraintStart_toEndOf="@+id/tvPriorite"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/tvNom"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="2dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/white"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -59,8 +66,6 @@
             android:id="@+id/cjJauge"
             android:layout_width="0dp"
             android:layout_height="22dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="2dp"
             android:paddingTop="2dp"
             android:paddingBottom="2dp"
             app:CJVDrawableFond="@drawable/fond_jauge"
@@ -69,10 +74,20 @@
             app:CJVValeur="50"
             app:CVJCouleurTexte="@color/white"
             app:CVJTailleTexte="30"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tvNom"
             app:layout_constraintTop_toBottomOf="@+id/tvNom" />
+
+        <TextView
+            android:id="@+id/tvEcheance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/white"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="@+id/tvNom"
+            app:layout_constraintTop_toBottomOf="@+id/cjJauge"
+            app:drawableStartCompat="@drawable/alarm" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -15,7 +15,7 @@ import com.lpi.taches.taches.Preferences;
 import com.lpi.taches.taches.Tache;
 
 public class TachesWidgetViewsFactory implements RemoteViewsService.RemoteViewsFactory
-	{
+{
 	private final TachesDatabase _bdd;
 	protected final Context mContext;
 	protected Cursor _cursor;
@@ -23,40 +23,41 @@ public class TachesWidgetViewsFactory implements RemoteViewsService.RemoteViewsF
 	private final Preferences _preferences;
 
 	public TachesWidgetViewsFactory(Context context, Intent intent)
-		{
+	{
 		_bdd = TachesDatabase.getInstance(context);
 		mContext = context;
 		_preferences = Preferences.getInstance(context);
 		_widgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
-		}
-	@Override public void onCreate()
-		{
+	}
 
-		}
+	@Override public void onCreate()
+	{
+
+	}
 
 	@Override public void onDataSetChanged()
-		{
+	{
 		if (_cursor != null)
 			_cursor.close();
 
-		_cursor = _bdd.getCursor(_preferences.getInt(Preferences.PREF_WIDGET_SORT+ _widgetId, OptionTri.OPTION_TRI_NOM), _preferences.getInt(Preferences.PREF_WIDGET_VUE+ _widgetId, OptionVue.OPTION_VUE_TOUTES));
-		}
+		_cursor = _bdd.getCursor(_preferences.getWidgetSort(_widgetId, OptionTri.OPTION_TRI_NOM), _preferences.getWidgetVue(_widgetId, OptionVue.OPTION_VUE_TOUTES));
+	}
 
 	@Override public void onDestroy()
-		{
+	{
 		if (_cursor != null)
-			{
+		{
 			_cursor.close();
-			}
 		}
+	}
 
 	@Override public int getCount()
-		{
+	{
 		return _cursor.getCount();
-		}
+	}
 
 	@Override public RemoteViews getViewAt(int position)
-		{
+	{
 		Tache tache;
 		if (_cursor.moveToPosition(position))
 			tache = new Tache(_cursor);
@@ -70,33 +71,33 @@ public class TachesWidgetViewsFactory implements RemoteViewsService.RemoteViewsF
 		rv.setTextViewText(R.id.tvWidgetPourcent, tache._achevement + "%");
 		rv.setTextColor(R.id.tvWidgetPourcent, couleur);
 		return rv;
-		}
+	}
 
 	@Override public RemoteViews getLoadingView()
-		{
+	{
 		return null;
-		}
+	}
 
 	@Override public int getViewTypeCount()
-		{
+	{
 		return 1;
-		}
+	}
 
 	@Override public long getItemId(int i)
+	{
+		if (_cursor != null)
 		{
-		if ( _cursor !=null)
+			if (_cursor.moveToPosition(i))
 			{
-			if  (_cursor.moveToPosition(i))
-				{
 				Tache t = new Tache(_cursor);
 				return t._id;
-				}
 			}
-		return 0;
 		}
+		return 0;
+	}
 
 	@Override public boolean hasStableIds()
-		{
+	{
 		return true;
-		}
 	}
+}

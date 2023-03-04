@@ -1,13 +1,10 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
 
-    <dimen name="taille_bouton_widget">24dp</dimen>
+    <dimen name="taille_bouton_widget">32dp</dimen>
     <dimen name="corner_bottomright">0dp</dimen>
-    <dimen name="corner_bottomleft">16dp</dimen>
-    <dimen name="corner_topleft">16dp</dimen>
+    <dimen name="corner_bottomleft">8dp</dimen>
+    <dimen name="corner_topleft">0dp</dimen>
     <dimen name="corner_topright">0dp</dimen>
     <dimen name="corner_jauge">8dp</dimen>
-    <dimen name="marge_entete_tache">6dp</dimen>
-    <dimen name="element_hauteur">56dp</dimen>
-
 </resources>

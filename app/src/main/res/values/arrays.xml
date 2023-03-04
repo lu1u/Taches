@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="priorites">
-        <item>Très basse</item>
-        <item>Basse</item>
-        <item>Normale</item>
-        <item>Haute</item>
-        <item>Très haute</item>
+        <item>@string/tres_basse</item>
+        <item>@string/basse</item>
+        <item>@string/normale</item>
+        <item>@string/haute</item>
+        <item>@string/tres_haute</item>
     </string-array>
 
     <array name="priorites_drawables">
@@ -23,4 +23,11 @@
         <item>@color/priorite_haute</item>
         <item>@color/priorite_treshaute</item>
     </array>
+
+    <string-array name="niveauxRapport">
+        <item>DEBUG</item>
+        <item>WARNING</item>
+        <item>ERROR</item>
+        <item>HISTORIQUE</item>
+    </string-array>
 </resources>

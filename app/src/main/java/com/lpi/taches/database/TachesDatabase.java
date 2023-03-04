@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,6 +17,7 @@ import com.lpi.taches.taches.Tache;
 
 public class TachesDatabase
 {
+	private static final String TAG = "TachesDatabase";
 	@Nullable
 	protected static TachesDatabase INSTANCE = null;
 	protected SQLiteDatabase _database;
@@ -68,7 +70,7 @@ public class TachesDatabase
 			_database.insert(DbHelper.TABLE_TACHES, null, initialValues);
 		} catch (Exception e)
 		{
-			MainActivity.SignaleErreur("Ajout de la Tache", e);
+			MainActivity.SignaleErreur(null,"Ajout de la Tache", e);
 		}
 	}
 
@@ -82,7 +84,7 @@ public class TachesDatabase
 			_database.update(DbHelper.TABLE_TACHES, valeurs, DbHelper.COLONNE_TACHE_ID + " = " + Tache._id, null);
 		} catch (Exception e)
 		{
-			MainActivity.SignaleErreur("modification e la tache", e);
+			MainActivity.SignaleErreur(null,"modification e la tache", e);
 		}
 	}
 
@@ -132,6 +134,9 @@ public class TachesDatabase
 				case OptionTri.OPTION_TRI_ACHEVEMENT:
 					orderBy = DbHelper.COLONNE_TACHE_ACHEVEMENT;
 					break;
+				case OptionTri.OPTION_TRI_ALARME:
+					orderBy = DbHelper.COLONNE_TACHE_ALARME + " ASC";
+					break;
 				default:
 					orderBy = null;
 					break;
@@ -158,7 +163,7 @@ public class TachesDatabase
 			return _database.query(DbHelper.TABLE_TACHES, DbHelper.TABLE_TACHES_COLONNES, selection, selectionArg, null, null, orderBy);
 		} catch (Exception e)
 		{
-			MainActivity.SignaleErreur("Erreur dans getCursor", e);
+			MainActivity.SignaleErreur(null,"Erreur dans getCursor", e);
 		}
 
 		return null;
@@ -230,4 +235,72 @@ public class TachesDatabase
 		}
 		return existe;
 	}
+
+	/***
+	 * Charge une tache a partir de son Id dans la base
+	 * @param id
+	 * @return
+	 */
+	public @Nullable  Tache getTache(int id)
+	{
+		Tache result = null;
+		String selection = DbHelper.COLONNE_TACHE_ID + " =?";
+		String[] selectionArg = new String[]{"" + id};
+		try
+		{
+			Cursor cursor = _database.query(DbHelper.TABLE_TACHES, DbHelper.TABLE_TACHES_COLONNES, selection, selectionArg, null, null, null);
+			if (null != cursor)
+			{
+				if (cursor.getCount() > 0)
+				{
+					cursor.moveToFirst();
+					result  = new Tache(cursor);
+					Log.d(TAG, "Tache trouvée " + result);
+				}
+				cursor.close();
+			}
+		} catch (Exception e)
+		{
+			MainActivity.SignaleErreur(null,"Erreur dans getCursor", e);
+		}
+		return result;
+	}
+
+	/***
+	 * Retourne la tache dont l'alarme est la plus proche dans l'avenir
+	 * @param dateMaintenant
+	 * @return
+	 */
+	public Tache getProchaineTache(String dateMaintenant)
+	{
+		Tache result = null;
+		try
+		{
+			final String query = "SELECT * FROM " + DbHelper.TABLE_TACHES + " WHERE " + DbHelper.COLONNE_TACHE_ALARME + " >= ?"
+					+ " ORDER BY " + DbHelper.COLONNE_TACHE_ALARME + " ASC, " + DbHelper.COLONNE_TACHE_PRIORITE + " DESC"
+					+ " LIMIT 1";
+
+			Log.d(TAG, "getProchaineTache: " + dateMaintenant);
+			Log.d(TAG, query);
+
+			Cursor cursor = _database.rawQuery(query, new String[]{dateMaintenant});
+			if (null != cursor)
+			{
+				if (cursor.getCount() > 0)
+				{
+					cursor.moveToFirst();
+					result  = new Tache(cursor);
+					Log.d(TAG, "Tache trouvée " + result);
+				}
+				cursor.close();
+			}
+		} catch (Exception e)
+		{
+			MainActivity.SignaleErreur(null,"Erreur dans getCursor", e);
+		}
+
+		return result;
+	}
+
+
 }

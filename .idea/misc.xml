@@ -3,16 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Donnees/lucien/Developpement/Android/Taches2/app/src/main/res/drawable/ic_gradient_vertical.xml" value="0.296" />
+        <entry key="..\:/Donnees/lucien/Developpement/Android/Taches2/app/src/main/res/drawable/ic_invert_colors.xml" value="0.296" />
         <entry key="..\:/Donnees/lucien/Developpement/Android/Taches2/app/src/main/res/drawable/priorite_basse.xml" value="0.2295" />
         <entry key="..\:/Donnees/lucien/Developpement/Android/Taches2/app/src/main/res/drawable/priorite_haute.xml" value="0.2295" />
         <entry key="..\:/Donnees/lucien/Developpement/Android/Taches2/app/src/main/res/drawable/priorite_normale.xml" value="0.2295" />
         <entry key="..\:/Donnees/lucien/Developpement/Android/Taches2/app/src/main/res/drawable/priorite_tresbasse.xml" value="0.2295" />
         <entry key="..\:/Donnees/lucien/Developpement/Android/Taches2/app/src/main/res/drawable/priorite_treshaute.xml" value="0.2295" />
+        <entry key="..\:/Donnees/lucien/Developpement/Android/Taches2/app/src/main/res/drawable/settings.xml" value="0.383" />
+        <entry key="..\:/Donnees/lucien/Developpement/Android/Taches2/app/src/main/res/drawable/sort.xml" value="0.383" />
         <entry key="..\:/Donnees/lucien/Developpement/Android/Taches2/app/src/main/res/layout/activity_apropos.xml" value="0.2947916666666667" />
         <entry key="..\:/Donnees/lucien/Developpement/Android/Taches2/app/src/main/res/layout/activity_edit_tache.xml" value="0.2947916666666667" />
         <entry key="..\:/Donnees/lucien/Developpement/Android/Taches2/app/src/main/res/layout/activity_main.xml" value="0.2625" />
+        <entry key="..\:/Donnees/lucien/Developpement/Android/Taches2/app/src/main/res/layout/activity_taches_widget_settings.xml" value="0.5" />
         <entry key="..\:/Donnees/lucien/Developpement/Android/Taches2/app/src/main/res/layout/element_liste.xml" value="0.2625" />
         <entry key="..\:/Donnees/lucien/Developpement/Android/Taches2/app/src/main/res/layout/taches_widget.xml" value="0.2625" />
+        <entry key="..\:/Donnees/lucien/Developpement/Android/Taches2/app/src/main/res/layout/taches_widget_blanc.xml" value="0.2921875" />
         <entry key="..\:/lucien/Developpement/Android/Taches2/app/src/main/res/drawable/about.xml" value="0.317" />
         <entry key="..\:/lucien/Developpement/Android/Taches2/app/src/main/res/drawable/fond_jauge.xml" value="0.216" />
         <entry key="..\:/lucien/Developpement/Android/Taches2/app/src/main/res/drawable/jauge.xml" value="0.1" />

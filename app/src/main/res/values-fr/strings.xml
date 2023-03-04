@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Tâches</string>
-    <string name="title_activity_edit_tache">Modification</string>
+    <string name="title_activity_tache_edit">Modification</string>
     <string name="tache_sans_nom">Sans nom %1$d</string>
     <string name="modifier">Modifier…</string>
     <string name="supprimer">Supprimer</string>
@@ -10,6 +10,7 @@
     <string name="widget_sort_priorite">Tri par priorité</string>
     <string name="widget_sort_creation">Tri par date de création</string>
     <string name="widget_sort_achevement">Tri par pourcentage d\'achèvement</string>
+    <string name="widget_sort_alarme">Tri par date d\'alarme</string>
     <string name="widget_sort_nom">Tri par nom</string>
     <string name="widget_vue_incompletes">Incomplètes</string>
     <string name="widget_vue_completes">Complètes</string>
@@ -17,4 +18,51 @@
     <string name="ui_a_propos_icones">Source des icônes https://materialdesignicons.com/</string>
     <string name="ui_a_propos_code">Quelques morceaux de code: https://stackoverflow.com/</string>
     <string name="supprimer_titre">Supprimer</string>
+
+    <string name="tres_basse">Très basse</string>
+    <string name="basse">Basse</string>
+    <string name="normale">Normale</string>
+    <string name="haute">Haute</string>
+    <string name="tres_haute">Très haute</string>
+    <string name="ui_transparence">Transparence:</string>
+    <string name="ui_couleur">Couleur:</string>
+    <string name="ui_noir">Noir</string>
+    <string name="ui_blanc">Blanc</string>
+    <string name="channel_name">Tâches</string>
+    <string name="channel_description">Notification pour une tâche</string>
+    <string name="pas_encore_de_traces">Pas encore de traces</string>
+    <string name="nom">Nom:</string>
+    <string name="note">Note:</string>
+    <string name="priorit">Priorité:</string>
+    <string name="ach_vement">Achèvement:</string>
+    <string name="ui_bouton_rapport">Rapport</string>
+    <string name="annuler">Annuler</string>
+    <string name="partager">Partager</string>
+    <string name="tri">Tri</string>
+    <string name="vue">Vue</string>
+    <string name="a_propos">A propos...</string>
+    <string name="vider_traces">Vider traces</string>
+    <string name="menu_partager">Partager</string>
+    <string name="trier_les_t_ches">Trier les tâches</string>
+    <string name="tri_nom">Nom</string>
+    <string name="priorite">Priorite</string>
+    <string name="date_de_cr_ation">Date de création</string>
+    <string name="tri_achevement">Progression</string>
+    <string name="alarme">Alarme</string>
+    <string name="voir_les_t_ches">Voir les tâches</string>
+    <string name="toutes">Toutes</string>
+    <string name="incompl_tes">Incomplètes</string>
+    <string name="compl_tes">Complètes</string>
+    <string name="aucune_tache">Aucune tâche</string>
+    <string name="menu_modifier">Modifier...</string>
+    <string name="menu_supprimer">Supprimer...</string>
+    <string name="ok">Ok</string>
+    <string name="share_header_1">Application Tâche\n</string>
+    <string name="share_header_2">(c) Lucien Pilloni 2022\')\n</string>
+    <string name="share_header_3">---\n</string>
+    <string name="share_nom">Nom:</string>
+    <string name="share_note">Note:</string>
+    <string name="share_creation">Création:</string>
+    <string name="share_alarme">Alarme:</string>
+    <string name="alarme_non_active">Non active</string>
 </resources>

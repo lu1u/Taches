@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">Tasks</string>
 
-
-    <string name="title_activity_edit_tache">Modify</string>
+    <string name="title_activity_tache_edit">Modification</string>
     <string name="tache_sans_nom">No name %1$d</string>
     <string name="modifier">Modify…</string>
     <string name="supprimer">Delete</string>
@@ -11,6 +10,7 @@
     <string name="widget_sort_priorite">Sort by priority</string>
     <string name="widget_sort_creation">Sort by creation date</string>
     <string name="widget_sort_achevement">Sort by percentage of completion</string>
+    <string name="widget_sort_alarme">Sort by time of alarme</string>
     <string name="widget_sort_nom">Sort by name</string>
     <string name="widget_vue_incompletes">Incomplete</string>
     <string name="widget_vue_completes">Complete</string>
@@ -18,4 +18,52 @@
     <string name="ui_a_propos_icones">Icons from https://materialdesignicons.com/</string>
     <string name="ui_a_propos_code">Code excerpt from: https://stackoverflow.com/</string>
     <string name="supprimer_titre">Delete</string>
+
+    <string name="tres_basse">Lowest</string>
+    <string name="basse">Low</string>
+    <string name="normale">Normal</string>
+    <string name="haute">High</string>
+    <string name="tres_haute">Highest</string>
+    <string name="ui_transparence">Transparency:</string>
+    <string name="ui_couleur">Color:</string>
+    <string name="ui_noir">Black</string>
+    <string name="ui_blanc">White</string>
+    <string name="channel_name">Tasks</string>
+    <string name="channel_description">Notification for a task</string>
+    <string name="pas_encore_de_traces">No log yet</string>
+    <string name="nom">Name:</string>
+    <string name="note">Note:</string>
+    <string name="priorit">Priorité:</string>
+    <string name="ach_vement">Progress:</string>
+    <string name="ui_bouton_rapport">Report</string>
+    <string name="ok">Ok</string>
+    <string name="annuler">Cancel</string>
+    <string name="partager">Share</string>
+    <string name="tri">Sort</string>
+    <string name="vue">View</string>
+    <string name="a_propos">About</string>
+    <string name="vider_traces">Delete traces</string>
+    <string name="menu_partager">Share</string>
+    <string name="trier_les_t_ches">Task sort</string>
+    <string name="tri_nom">Name</string>
+    <string name="priorite">Priority</string>
+    <string name="date_de_cr_ation">Creation date</string>
+    <string name="tri_achevement">Progress</string>
+    <string name="alarme">Alarm</string>
+    <string name="voir_les_t_ches">Task view</string>
+    <string name="toutes">All</string>
+    <string name="incompl_tes">Incomplete</string>
+    <string name="compl_tes">Complete</string>
+    <string name="aucune_tache">No task</string>
+    <string name="menu_modifier">Modify...</string>
+    <string name="menu_supprimer">Delete...</string>
+    <string name="share_header_1">Task application\n</string>
+    <string name="share_header_2">(c) Lucien Pilloni 2022\')\n</string>
+    <string name="share_header_3">---\n</string>
+    <string name="share_nom">Nom:</string>
+    <string name="share_note">Note:</string>
+    <string name="share_creation">Creation:</string>
+    <string name="share_alarme">Alarm:</string>
+    <string name="alarme_non_active">Disabled</string>
+
 </resources>

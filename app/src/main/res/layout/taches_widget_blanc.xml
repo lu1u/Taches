@@ -1,0 +1,57 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/idLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4fff">
+
+    <TextView
+        android:id="@+id/tvEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/aucune_tache" />
+
+    <ListView
+        android:id="@+id/lvTaches"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        android:layout_marginBottom="@dimen/taille_bouton_widget">
+
+    </ListView>
+
+    <ImageButton
+        android:id="@+id/ibWidgetSort"
+        android:layout_width="@dimen/taille_bouton_widget"
+        android:layout_height="@dimen/taille_bouton_widget"
+        android:layout_gravity="bottom|left"
+        android:background="#0000"
+        android:src="@drawable/sort"
+        android:tint="@color/black" />
+
+    <ImageButton
+        android:id="@+id/ibWidgetVue"
+        android:layout_width="@dimen/taille_bouton_widget"
+        android:layout_height="@dimen/taille_bouton_widget"
+        android:layout_gravity="bottom|right"
+        android:background="#0000"
+        android:src="@drawable/eye"
+        app:tint="@color/black" />
+
+    <ImageButton
+        android:id="@+id/ibWidgetApplication"
+        android:layout_width="@dimen/taille_bouton_widget"
+        android:layout_height="@dimen/taille_bouton_widget"
+        android:layout_gravity="bottom|center_horizontal"
+        android:background="#0000"
+        android:src="@drawable/application"
+        app:tint="@color/black" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_gravity="right|top"
+        android:background="@color/priorite_basse"
+        android:text="" />
+
+</FrameLayout>

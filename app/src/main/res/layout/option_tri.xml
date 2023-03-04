@@ -7,7 +7,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Trier les tâches"
+        android:text="@string/trier_les_t_ches"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/primary" />
 
@@ -20,24 +20,30 @@
             android:id="@+id/rbTriNom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nom" />
+            android:text="@string/tri_nom" />
 
         <RadioButton
             android:id="@+id/rbTriPriorite"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Priorite" />
+            android:text="@string/priorite" />
 
         <RadioButton
             android:id="@+id/rbTriDateCreation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Date de création" />
+            android:text="@string/date_de_cr_ation" />
 
         <RadioButton
             android:id="@+id/rbTriAchevement"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Achèvement" />
+            android:text="@string/tri_achevement" />
+
+        <RadioButton
+            android:id="@+id/rbTriAlarme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/alarme" />
     </RadioGroup>
 </LinearLayout>

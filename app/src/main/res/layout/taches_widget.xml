@@ -1,21 +1,20 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/idLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#6000"
-    android:padding="8dp">
+    android:background="#4000">
 
     <TextView
         android:id="@+id/tvEmpty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Aucune tâche" />
+        android:text="@string/aucune_tache" />
 
     <ListView
         android:id="@+id/lvTaches"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="8dp"
         android:layout_marginBottom="@dimen/taille_bouton_widget">
 
     </ListView>

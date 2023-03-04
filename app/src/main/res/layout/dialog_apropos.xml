@@ -47,4 +47,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/ui_a_propos_code" />
+
+    <Button
+        android:id="@+id/bReport"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="8dp"
+        android:text="@string/ui_bouton_rapport"
+        android:textAllCaps="false" />
 </LinearLayout>

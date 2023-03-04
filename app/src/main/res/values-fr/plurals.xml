@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <plurals name="nombre_de_taches">
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <plurals name="nombre_de_taches" tools:ignore="MissingQuantity">
         <item quantity="zero">Aucune tâche</item>
-        <item quantity="one">Une tâche</item>
-        <item quantity="many">%d tâches</item>
+        <item quantity="one" tools:ignore="ImpliedQuantity">Une tâche</item>
+        <item quantity="two">Deux tâches</item>
         <item quantity="other">%d tâches</item>
     </plurals>
 </resources>

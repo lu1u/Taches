@@ -7,7 +7,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Voir les tâches"
+        android:text="@string/voir_les_t_ches"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/primary" />
 
@@ -20,18 +20,18 @@
             android:id="@+id/rbVueToutes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Toutes" />
+            android:text="@string/toutes" />
 
         <RadioButton
             android:id="@+id/rbVueIncompletes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Incomplètes" />
+            android:text="@string/incompl_tes" />
 
         <RadioButton
             android:id="@+id/rbVueCompletes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Complètes" />
+            android:text="@string/compl_tes" />
     </RadioGroup>
 </LinearLayout>

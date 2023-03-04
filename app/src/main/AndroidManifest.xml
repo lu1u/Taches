@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
-    <queries> <package android:name="com.lpi.widget.TachesWidgetContentProvider" /> </queries>
+    xmlns:tools="http://schemas.android.com/tools"
+    android:installLocation="auto">
+
+    <queries>
+        <package android:name="com.lpi.widget.TachesWidgetContentProvider" />
+    </queries>
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:allowBackup="true"
@@ -12,8 +21,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Taches"
         tools:targetApi="31">
+
+
+        <activity
+            android:name=".TacheEditActivity"
+            android:exported="false"
+            android:label="@string/title_activity_tache_edit"
+            android:theme="@style/Theme.Taches.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".widget.TachesWidgetSettingsActivity"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+
         <receiver
-            android:name="com.lpi.taches.widget.TachesWidget"
+            android:name=".widget.TachesWidget"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -23,16 +51,21 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/taches_widget_info" />
         </receiver>
+        <receiver
+            android:name=".widget.TachesWidgetBlanc"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/taches_widget_blanc_info" />
+        </receiver>
 
         <activity
-            android:name="com.lpi.taches.EditTacheActivity"
-            android:exported="false"
-            android:label="@string/title_activity_edit_tache"
-            android:theme="@style/Theme.Taches.NoActionBar" />
-        <activity
-            android:name="com.lpi.taches.MainActivity"
+            android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:theme="@style/Theme.Taches.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -40,17 +73,36 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".report.ReportActivity" />
         <provider
-            android:name="com.lpi.taches.widget.TachesWidgetContentProvider"
+            android:name=".widget.TachesWidgetContentProvider"
             android:authorities="com.lpi.taches.widget.TachesWidgetContentProvider"
             android:enabled="true"
-            android:exported="false"/>
+            android:exported="false" />
 
         <service
-            android:name="com.lpi.taches.widget.TachesWidgetContentService"
+            android:name=".widget.TachesWidgetContentService"
             android:exported="false"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
+
+        <receiver
+            android:name=".alarmes.AlarmReceiver"
+            android:enabled="true"
+            android:exported="true" />
+
+        <receiver
+            android:name=".alarmes.NotificationActionReceiver"
+            android:enabled="true"
+            android:exported="true"/>
+        <receiver
+            android:name=".utils.RebootReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

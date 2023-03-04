@@ -39,7 +39,7 @@ public class TachesWidgetContentProvider extends ContentProvider
 	public synchronized Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder)
 		{
 		Preferences preferences = Preferences.getInstance(getContext());
-		return _database.getCursor(preferences.getInt(Preferences.PREF_WIDGET_SORT+_widgetId, OptionTri.OPTION_TRI_NOM), preferences.getInt(Preferences.PREF_WIDGET_VUE+_widgetId, OptionVue.OPTION_VUE_TOUTES));
+		return _database.getCursor(preferences.getWidgetSort(_widgetId, OptionTri.OPTION_TRI_NOM), preferences.getWidgetVue(_widgetId, OptionVue.OPTION_VUE_TOUTES));
 		}
 
 	@Override

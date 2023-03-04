@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+  <stroke android:color="@color/fond_bouton_alarme" android:width="4dp" />
+  <corners
+      android:bottomLeftRadius="@dimen/corner_jauge"
+      android:bottomRightRadius="@dimen/corner_jauge"
+      android:topLeftRadius="@dimen/corner_jauge"
+      android:topRightRadius="@dimen/corner_jauge" />
+</shape>

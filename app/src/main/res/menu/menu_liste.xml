@@ -8,5 +8,8 @@
         <item
             android:id="@+id/action_supprimer"
             android:title="@string/supprimer" />
+        <item
+            android:id="@+id/action_partager"
+            android:title="@string/partager" />
     </group>
 </menu>
